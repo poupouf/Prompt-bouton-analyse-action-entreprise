@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Copy Prompt</title>
+<style>
+body {
+  background-color: #0f0f14;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+button {
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+  padding: 20px 40px;
+  font-size: 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: #5a4bd1;
+}
+
+#copied {
+  position: absolute;
+  top: 20px;
+  color: #00ffcc;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+</style>
+</head>
+<body>
+
+<div id="copied">✅ Copié !</div>
+
+<button onclick="copyText()">📋 Copier le prompt</button>
+
+<script>
+function copyText() {
+  const text = `Analyse complète de l'entreprise : [Insérer le Nom ou le Ticker ici]
+
+Agis comme un analyste financier expert en Small & Mid Caps. Produis une analyse structurée selon les points suivants :
+
+1. ADN & Pipeline : Que fait l'entreprise concrètement ? Quels sont les projets majeurs ou produits en développement qui vont driver la croissance à 12-24 mois ?
+
+2. Bilan Économique & Risque de Dilution : > * Trésorerie : Quel est le cash disponible et le "burn rate" mensuel ?
+
+Runway : Jusqu'à quand l'entreprise peut-elle tenir sans financement externe ?
+
+Score de Dilution : Évalue le risque de levée de fonds/AK sur une échelle de 0 à 100 (ex: Risque à 6 mois : X/100, Risque à 12 mois : Y/100).
+
+Valuation : L'action est-elle sous-évaluée, surévaluée ou à son prix ? Donne un objectif de cours (Price Target) réaliste.
+
+3. Signaux Faibles & Dynamique Opérationnelle :
+
+RH : Est-ce qu'ils embauchent massivement (croissance) ou licencient (réduction de coûts/difficultés) ?
+
+Contrats : Analyse les annonces récentes de contrats ou partenariats "mineurs" qui valident le business model.
+
+4. Gouvernance & Insiders : > * Track record : Qui sont les dirigeants et qu'ont-ils réussi par le passé ?
+
+Mouvements : Les dirigeants achètent-ils ou vendent-ils leurs propres actions récemment ?
+
+5. Calendrier & Catalyseurs :
+
+Quelle est la date de la prochaine annonce de résultats ?
+
+Analyse post-événement : Si une acquisition ou un changement majeur a eu lieu il y a moins de 6 mois, analyse si l'intégration se passe bien (passation de pouvoir, premiers chiffres).`;
+
+  navigator.clipboard.writeText(text);
+
+  const copied = document.getElementById("copied");
+  copied.style.opacity = 1;
+
+  setTimeout(() => {
+    copied.style.opacity = 0;
+  }, 1500);
+}
+</script>
+
+</body>
+</html>
