@@ -4,16 +4,31 @@
 <meta charset="UTF-8">
 <title>Copy Prompt</title>
 <style>
-body {
+/* On verrouille la structure de base pour éviter tout scroll */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Empêche physiquement le défilement */
   background-color: #0f0f14;
+}
+
+body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;           /* Supprime les marges par défaut */
-  overflow: hidden;    /* Empêche l'apparition des barres de défilement */
   font-family: Arial, sans-serif;
- 
+}
+
+/* --- HACK ANTI-BARRE BLANCHE --- */
+/* Cache la barre sur Chrome, Safari et Edge */
+*::-webkit-scrollbar {
+  display: none;
+}
+/* Cache la barre sur Firefox */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 button {
@@ -25,6 +40,9 @@ button {
   border-radius: 12px;
   cursor: pointer;
   transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 button:hover {
@@ -33,19 +51,23 @@ button:hover {
 
 #copied {
   position: absolute;
-  top: 20px;
+  top: 15px;
   color: #00ffcc;
   font-size: 14px;
+  font-weight: bold;
   opacity: 0;
   transition: opacity 0.3s;
+  pointer-events: none;
 }
 </style>
 </head>
 <body>
 
-<div id="copied">✅ Copié !</div>
+<div id="copied">✅ Copié dans le presse-papier !</div>
 
-<button onclick="copyText()">📋 Copier le prompt</button>
+<button onclick="copyText()">
+  <span>📋</span> Copier le prompt
+</button>
 
 <script>
 function copyText() {
@@ -79,14 +101,14 @@ Quelle est la date de la prochaine annonce de résultats ?
 
 Analyse post-événement : Si une acquisition ou un changement majeur a eu lieu il y a moins de 6 mois, analyse si l'intégration se passe bien (passation de pouvoir, premiers chiffres).`;
 
-  navigator.clipboard.writeText(text);
+  navigator.clipboard.writeText(text).then(() => {
+    const copied = document.getElementById("copied");
+    copied.style.opacity = 1;
 
-  const copied = document.getElementById("copied");
-  copied.style.opacity = 1;
-
-  setTimeout(() => {
-    copied.style.opacity = 0;
-  }, 1500);
+    setTimeout(() => {
+      copied.style.opacity = 0;
+    }, 1500);
+  });
 }
 </script>
 
