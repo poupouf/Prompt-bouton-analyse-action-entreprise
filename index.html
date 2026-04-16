@@ -2,66 +2,67 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Copy Prompt</title>
 <style>
-/* Verrouillage total pour supprimer la barre blanche */
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #0f0f14;
-}
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #0f0f14;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Arial, sans-serif;
-}
+  /* Cache les barres de défilement */
+  *::-webkit-scrollbar { display: none; }
+  * { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Cache visuellement les barres de défilement au cas où */
-*::-webkit-scrollbar { display: none; }
-* { -ms-overflow-style: none; scrollbar-width: none; }
+  button {
+    background-color: #6c5ce7;
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    font-size: 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    z-index: 10;
+  }
 
-button {
-  background-color: #6c5ce7;
-  color: white;
-  border: none;
-  padding: 20px 40px;
-  font-size: 18px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+  button:active { transform: scale(0.98); }
 
-button:hover {
-  background-color: #5a4bd1;
-}
+  #copied {
+    position: absolute;
+    top: 15px;
+    color: #00ffcc;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
 
-#copied {
-  position: absolute;
-  top: 15px;
-  color: #00ffcc;
-  font-size: 14px;
-  font-weight: bold;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
+  /* On cache le textarea mais on le laisse "physiquement" présent */
+  #temp-text {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    opacity: 0;
+  }
 </style>
 </head>
 <body>
 
 <div id="copied">✅ Copié !</div>
 
-<button onclick="copyText()">📋 Copier le prompt</button>
+<button id="copyBtn">📋 Copier le prompt</button>
+
+<textarea id="temp-text"></textarea>
 
 <script>
-function copyText() {
-  const text = `Analyse complète de l'entreprise : [Insérer le Nom ou le Ticker ici]
+const promptText = `Analyse complète de l'entreprise : [Insérer le Nom ou le Ticker ici]
 
 Agis comme un analyste financier expert en Small & Mid Caps. Produis une analyse structurée selon les points suivants :
 
@@ -91,30 +92,27 @@ Quelle est la date de la prochaine annonce de résultats ?
 
 Analyse post-événement : Si une acquisition ou un changement majeur a eu lieu il y a moins de 6 mois, analyse si l'intégration se passe bien (passation de pouvoir, premiers chiffres).`;
 
-  // --- MÉTHODE ROBUSTE POUR NOTION ---
-  const textArea = document.createElement("textarea");
-  textArea.value = text;
-  document.body.appendChild(textArea);
+document.getElementById('copyBtn').addEventListener('click', function() {
+  const textArea = document.getElementById('temp-text');
+  textArea.value = promptText;
   
-  // On rend le textarea invisible
-  textArea.style.position = "fixed";
-  textArea.style.left = "-9999px";
-  textArea.style.top = "0";
-  
+  // Étape cruciale pour Notion : Focus et sélection manuelle
+  textArea.focus();
   textArea.select();
-  textArea.setSelectionRange(0, 99999); // Pour mobiles
+  textArea.setSelectionRange(0, 99999); 
 
   try {
-    document.execCommand('copy');
-    const copied = document.getElementById("copied");
-    copied.style.opacity = 1;
-    setTimeout(() => { copied.style.opacity = 0; }, 1500);
+    // Tentative de copie
+    const successful = document.execCommand('copy');
+    if (successful) {
+      const msg = document.getElementById("copied");
+      msg.style.opacity = 1;
+      setTimeout(() => { msg.style.opacity = 0; }, 1500);
+    }
   } catch (err) {
-    console.error('Erreur lors de la copie', err);
+    alert("Désolé, la copie a échoué. Essayez de survoler le texte et de copier manuellement.");
   }
-
-  document.body.removeChild(textArea);
-}
+});
 </script>
 
 </body>
