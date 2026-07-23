@@ -62,35 +62,726 @@
 <textarea id="temp-text"></textarea>
 
 <script>
-const promptText = `Analyse complète de l'entreprise : [Insérer le Nom ou le Ticker ici]
+const promptText = `Agis comme un analyste financier senior spécialisé dans les Small & Micro Caps américaines.
 
-Agis comme un analyste financier expert en Small & Mid Caps. Produis une analyse structurée selon les points suivants :
+Tu travailles comme un analyste Buy-Side dans un fonds d'investissement spécialisé dans les entreprises à fort potentiel.
 
-1. ADN & Pipeline : Que fait l'entreprise concrètement ? Quels sont les projets majeurs ou produits en développement qui vont driver la croissance à 12-24 mois ?
+Ton objectif n'est PAS de confirmer ma thèse mais de la tester de manière critique.
 
-2. Bilan Économique & Risque de Dilution : > * Trésorerie : Quel est le cash disponible et le "burn rate" mensuel ?
+Tu dois chercher autant les raisons d'acheter que les raisons de ne pas acheter.
 
-Runway : Jusqu'à quand l'entreprise peut-elle tenir sans financement externe ?
+Tu dois rester totalement objectif.
 
-Score de Dilution : Évalue le risque de levée de fonds/AK sur une échelle de 0 à 100 (ex: Risque à 6 mois : X/100, Risque à 12 mois : Y/100).
+N'invente jamais une information.
 
-Valuation : L'action est-elle sous-évaluée, surévaluée ou à son prix ? Donne un objectif de cours (Price Target) réaliste.
+Lorsque certaines données sont inconnues, indique clairement que l'information n'est pas disponible.
 
-3. Signaux Faibles & Dynamique Opérationnelle :
+Ne fais jamais de suppositions présentées comme des faits.
 
-RH : Est-ce qu'ils embauchent massivement (croissance) ou licencient (réduction de coûts/difficultés) ?
+Distingue toujours :
 
-Contrats : Analyse les annonces récentes de contrats ou partenariats "mineurs" qui valident le business model.
+• Les faits vérifiables.
+• Les hypothèses.
+• Les estimations.
+• Ton niveau de confiance.
 
-4. Gouvernance & Insiders : > * Track record : Qui sont les dirigeants et qu'ont-ils réussi par le passé ?
+Attribue à chaque conclusion un niveau de confiance :
 
-Mouvements : Les dirigeants achètent-ils ou vendent-ils leurs propres actions récemment ?
+★★★★★ Très élevé
 
-5. Calendrier & Catalyseurs :
+★★★★☆ Élevé
 
-Quelle est la date de la prochaine annonce de résultats ?
+★★★☆☆ Moyen
 
-Analyse post-événement : Si une acquisition ou un changement majeur a eu lieu il y a moins de 6 mois, analyse si l'intégration se passe bien (passation de pouvoir, premiers chiffres).`;
+★★☆☆☆ Faible
+
+★☆☆☆☆ Très faible
+
+Lorsque plusieurs sources se contredisent, explique pourquoi.
+
+Ne considère jamais une seule donnée alternative comme une preuve.
+
+Les signaux terrain doivent uniquement servir à renforcer ou affaiblir la thèse d'investissement lorsqu'ils sont cohérents avec plusieurs autres éléments (résultats financiers, contrats, recrutement, production, brevets, finances, partenariats, etc.).
+
+Distingue toujours les faits des hypothèses et précise systématiquement ton niveau de confiance.
+
+Ne te contente jamais de reprendre les communiqués de presse de l'entreprise.
+
+Vérifie si les affirmations du management sont cohérentes avec :
+
+• les résultats financiers,
+• les dépôts réglementaires,
+• les contrats réellement annoncés,
+• les données publiques,
+• les réactions du marché.
+
+Signale toute contradiction.
+
+Sois critique.
+
+────────────────────────────────────────
+
+1. ADN DE L'ENTREPRISE
+
+Explique précisément :
+
+• Que fait l'entreprise ?
+• Comment gagne-t-elle de l'argent ?
+• Quel problème résout-elle ?
+• Pourquoi des clients paient pour cette solution ?
+• Quel est son business model ?
+• Quels sont ses principaux produits ?
+• Quels sont les segments représentant le plus de chiffre d'affaires ?
+• Quels sont les principaux clients ?
+• Les revenus sont-ils récurrents ?
+• Quelle est la répartition géographique du chiffre d'affaires ?
+
+Résume ensuite l'entreprise en moins de 10 lignes.
+
+Attribue une note /10.
+
+────────────────────────────────────────
+
+2. MARCHÉ ADRESSABLE (TAM)
+
+Analyse :
+
+• Taille du marché actuel.
+• Taille du marché futur.
+• CAGR attendu.
+• Marchés secondaires.
+• Nouvelles opportunités.
+
+Puis réponds :
+
+Le marché est-il suffisamment grand pour permettre à cette entreprise de multiplier sa valorisation par 5 ou par 10 ?
+
+Quels sont les principaux moteurs de croissance du secteur ?
+
+Quels risques pourraient freiner cette croissance ?
+
+Note /10.
+
+────────────────────────────────────────
+
+3. AVANTAGE CONCURRENTIEL
+
+Analyse :
+
+• Brevets.
+• Technologie propriétaire.
+• Logiciels propriétaires.
+• Coût inférieur.
+• Qualité supérieure.
+• Effet réseau.
+• Image de marque.
+• Difficulté de reproduction.
+• Partenariats.
+• Certification.
+• Réglementation.
+
+Réponds ensuite :
+
+Pourquoi un client choisirait cette entreprise plutôt qu'une autre ?
+
+Qui sont ses cinq principaux concurrents ?
+
+L'entreprise possède-t-elle un véritable "moat" ou simplement une bonne technologie ?
+
+Quels concurrents pourraient menacer sa position dans les prochaines années ?
+
+Note /10.
+
+────────────────────────────────────────
+
+4. PIPELINE ET CATALYSEURS
+
+Liste tous les catalyseurs des 24 prochains mois.
+
+Pour chacun indique :
+
+• Description.
+• Date estimée.
+• Importance.
+• Probabilité de réussite.
+• Impact potentiel sur le cours.
+
+Classe-les du plus important au moins important.
+
+Puis réponds :
+
+Quels sont les trois événements susceptibles de transformer complètement la société ?
+
+Note /10.
+
+────────────────────────────────────────
+
+5. ANALYSE FINANCIÈRE
+
+Analyse en profondeur :
+
+• Chiffre d'affaires.
+• Croissance du chiffre d'affaires.
+• EBITDA.
+• Résultat net.
+• Flux de trésorerie.
+• Free Cash Flow.
+• Marge brute.
+• Marge opérationnelle.
+• Marge nette.
+• Endettement.
+• Dette nette.
+• Cash disponible.
+• Cash Burn mensuel.
+• Cash Burn annuel.
+• Runway estimée.
+
+N'affiche pas uniquement les chiffres.
+
+Explique leur signification.
+
+Indique si les tendances sont positives ou négatives.
+
+Note /20.
+
+────────────────────────────────────────
+
+6. RISQUE DE DILUTION
+
+Analyse :
+
+• Nombre d'actions en circulation.
+• Evolution du nombre d'actions sur cinq ans.
+• Historique des levées de fonds.
+• Historique des émissions d'actions.
+• Obligations convertibles.
+• Warrants.
+• Stock-options.
+
+Puis estime :
+
+Probabilité de dilution :
+
+• 3 mois
+• 6 mois
+• 12 mois
+• 24 mois
+
+Sur une échelle de 0 à 100.
+
+Explique pourquoi.
+
+Indique également :
+
+Une éventuelle dilution serait-elle :
+
+• positive (croissance)
+• neutre
+• destructrice de valeur ?
+
+────────────────────────────────────────
+
+7. MANAGEMENT
+
+Analyse :
+
+CEO
+
+CFO
+
+Board
+
+Historique professionnel.
+
+Succès passés.
+
+Échecs passés.
+
+Participations dans l'entreprise.
+
+Rémunération.
+
+Alignement avec les actionnaires.
+
+Achats récents d'actions.
+
+Ventes récentes.
+
+Conflits d'intérêts éventuels.
+
+Attribue une note /10.
+
+────────────────────────────────────────
+
+8. INSIDERS ET ACTIONNARIAT
+
+Analyse :
+
+• Principaux actionnaires.
+• Fonds présents.
+• Institutionnels.
+• Evolution des participations.
+• Insider Buying.
+• Insider Selling.
+• Short Interest.
+• Nombre d'analystes suivant le titre.
+
+Puis réponds :
+
+Pourquoi cette entreprise est-elle peu suivie ?
+
+Existe-t-il une raison fondamentale expliquant ce manque d'intérêt ?
+
+Ou s'agit-il simplement d'une inefficience du marché ?
+
+Attribue une note /10.
+────────────────────────────────────────
+
+9. DONNÉES ALTERNATIVES & VALIDATION TERRAIN
+
+Ne te limite jamais aux communiqués de presse.
+
+Cherche des preuves concrètes que l'activité réelle de l'entreprise évolue avant que cela apparaisse dans les résultats financiers.
+
+Les données alternatives ne doivent JAMAIS être utilisées comme une preuve unique.
+
+Elles servent uniquement à renforcer ou affaiblir la thèse d'investissement lorsqu'elles sont cohérentes avec plusieurs autres éléments (résultats financiers, contrats, recrutement, production, brevets, partenariats, investissements, etc.).
+
+Pour chaque donnée trouvée, indique :
+
+• Est-ce un fait ou une hypothèse ?
+• Niveau de confiance (★★★★★ à ★☆☆☆☆)
+• Pourquoi cette information est pertinente.
+
+────────────────────
+
+A. Présence dans le monde réel
+
+Analyse si les produits ou services apparaissent davantage dans la vie réelle.
+
+Exemples :
+
+• photos publiques
+• vidéos YouTube
+• TikTok
+• Instagram
+• X (Twitter)
+• LinkedIn
+• Reddit
+• forums spécialisés
+• conférences
+• salons professionnels
+• démonstrations
+• livestreams
+• photos de clients
+
+Réponds :
+
+Observe-t-on une augmentation visible de l'utilisation ?
+
+Le produit apparaît-il plus souvent qu'il y a quelques mois ?
+
+Les utilisateurs semblent-ils satisfaits ?
+
+Existe-t-il des preuves visuelles d'une adoption croissante ?
+
+────────────────────
+
+B. Analyse spécifique selon le secteur
+
+Si entreprise de défense :
+
+• matériel visible sur le terrain
+• photos géolocalisées
+• vidéos OSINT
+• nouvelles utilisations observées
+• évolution de la fréquence d'apparition
+
+Si entreprise spatiale :
+
+• satellites
+• photos des installations
+• lancements
+• contrats gouvernementaux
+• nouveaux partenaires
+• capacité de production
+
+Si entreprise médicale :
+
+• nouveaux hôpitaux
+• nouvelles cliniques
+• publications scientifiques
+• essais cliniques
+• recommandations médicales
+
+Si entreprise IA / logiciel :
+
+• GitHub
+• documentation
+• nouveaux clients
+• API
+• téléchargements
+• intégrations
+
+Si entreprise grand public :
+
+• influenceurs
+• avis clients
+• vidéos organiques
+• Google Trends
+• Amazon
+• Trustpilot
+• App Store
+• Play Store
+• réseaux sociaux
+
+────────────────────
+
+C. Evolution de la popularité
+
+Analyse :
+
+Google Trends
+
+Mentions Reddit
+
+Mentions X
+
+Mentions LinkedIn
+
+Mentions YouTube
+
+Communautés spécialisées
+
+Forums professionnels
+
+Avis clients
+
+Nombre d'avis
+
+Qualité des avis
+
+Evolution dans le temps
+
+Réponds :
+
+Cette popularité semble-t-elle naturelle ou artificielle ?
+
+Est-elle cohérente avec les chiffres publiés ?
+
+Le marché semble-t-il sous-estimer cette évolution ?
+
+Attribue une note /10.
+
+────────────────────────────────────────
+
+10. SIGNAUX FAIBLES
+
+Cherche tout ce qui pourrait annoncer une accélération future.
+
+Analyse notamment :
+
+• recrutement massif
+• nouvelles offres d'emploi
+• recrutement d'ingénieurs seniors
+• recrutement commercial
+• nouveaux bureaux
+• nouvelle usine
+• augmentation de la capacité de production
+• nouveaux brevets
+• nouveaux fournisseurs
+• nouvelles certifications
+• appels d'offres
+• contrats indirects
+• achats de machines
+• activité GitHub
+• partenariats secondaires
+• acquisitions
+• évolution du trafic web
+• nouveaux distributeurs
+• référencement chez de nouveaux revendeurs
+
+Explique pourquoi chaque élément est potentiellement important.
+
+Classe les signaux du plus pertinent au moins pertinent.
+
+Attribue une note /10.
+
+────────────────────────────────────────
+
+11. CE QUE LE MARCHÉ NE VOIT PEUT-ÊTRE PAS
+
+Agis comme un enquêteur.
+
+Cherche toutes les informations que le marché semble ignorer.
+
+Ne te contente pas des gros titres.
+
+Cherche les détails.
+
+Réponds :
+
+Quelles sont les trois informations les plus sous-estimées ?
+
+Pourquoi sont-elles importantes ?
+
+Pourquoi le marché semble-t-il les ignorer ?
+
+Quel impact pourraient-elles avoir dans 6 à 24 mois ?
+
+Puis fais l'exercice inverse.
+
+Quels sont les risques que le marché semble également sous-estimer ?
+
+────────────────────────────────────────
+
+12. VALORISATION
+
+Comparer avec au minimum cinq concurrents.
+
+Comparer :
+
+• EV/Sales
+• Price/Sales
+• EV/EBITDA
+• PER (si pertinent)
+• Capitalisation
+• Croissance
+• Marge brute
+• Marge opérationnelle
+
+Explique pourquoi l'entreprise mérite (ou non) une prime.
+
+Réponds :
+
+Le marché sous-évalue-t-il cette entreprise ?
+
+Pourquoi ?
+
+Attribue une juste valeur.
+
+Puis donne :
+
+Objectif 6 mois
+
+Objectif 12 mois
+
+Objectif 24 mois
+
+Scénario pessimiste
+
+Scénario réaliste
+
+Scénario optimiste
+
+Probabilité estimée de chaque scénario.
+
+Niveau de confiance.
+
+────────────────────────────────────────
+
+13. THÈSE D'INVESTISSEMENT
+
+Explique pourquoi cette entreprise pourrait :
+
+faire ×2
+
+faire ×5
+
+faire ×10
+
+Quelles conditions devraient être réunies ?
+
+Quels événements devraient se produire ?
+
+Pourquoi le marché pourrait changer d'avis ?
+
+────────────────────────────────────────
+
+14. THÈSE BAISSIÈRE
+
+Fais volontairement l'avocat du diable.
+
+Imagine que tu sois vendeur à découvert.
+
+Pourquoi cette entreprise pourrait-elle échouer ?
+
+Quels sont les plus gros risques ?
+
+Qu'est-ce qui invaliderait complètement la thèse d'investissement ?
+
+Quels événements me feraient vendre immédiatement ?
+
+Quels événements me feraient ne jamais acheter ?
+
+────────────────────────────────────────
+
+15. SCORE FINAL
+
+Attribue une note :
+
+Business : /20
+
+Management : /15
+
+Finances : /20
+
+Dilution : /15
+
+Avantage concurrentiel : /10
+
+Valorisation : /10
+
+Catalyseurs : /5
+
+Signaux faibles : /5
+
+Adoption terrain : /5
+
+Risque : /5
+
+TOTAL : /100
+
+Classe ensuite :
+
+95-100 → Exceptionnelle
+
+90-94 → Achat très fort
+
+85-89 → Achat fort
+
+80-84 → Achat
+
+75-79 → Intéressante
+
+70-74 → À surveiller
+
+60-69 → Très spéculative
+
+50-59 → Faible intérêt
+
+<50 → À éviter
+
+────────────────────────────────────────
+
+16. PLAN D'INVESTISSEMENT
+
+En supposant que je sois un investisseur long terme spécialisé dans les micro-caps.
+
+Indique :
+
+Est-ce un bon premier achat ?
+
+Vaut-il mieux attendre ?
+
+Attendre une dilution ?
+
+Attendre les résultats ?
+
+Attendre un contrat ?
+
+Renforcer après les résultats ?
+
+Renforcer progressivement ?
+
+Donne les niveaux de prix qui semblent intéressants.
+
+Propose une stratégie d'accumulation.
+
+────────────────────────────────────────
+
+17. CHECK-LIST FINALE
+
+Résume sous forme de tableau :
+
+✓ Business compréhensible
+
+✓ Revenus récurrents
+
+✓ Croissance forte
+
+✓ Marché adressable important
+
+✓ Avantage concurrentiel
+
+✓ Management crédible
+
+✓ Cash suffisant
+
+✓ Faible risque de dilution
+
+✓ Valorisation attractive
+
+✓ Bons catalyseurs
+
+✓ Adoption réelle visible
+
+✓ Signaux faibles positifs
+
+✓ Insider buying
+
+✓ Clients diversifiés
+
+✓ Marges en amélioration
+
+✓ Aucun drapeau rouge majeur
+
+────────────────────────────────────────
+
+18. CONCLUSION
+
+Présente d'abord un résumé exécutif (Executive Summary) en moins de 15 lignes.
+
+Puis indique :
+
+Les 5 meilleures raisons d'acheter.
+
+Les 5 meilleures raisons de ne pas acheter.
+
+Les 3 risques les plus importants.
+
+Les 3 catalyseurs les plus importants.
+
+Les 3 éléments que le marché semble sous-estimer.
+
+Enfin termine par une décision claire :
+
+⭐⭐⭐⭐⭐ ACHAT FORT
+
+⭐⭐⭐⭐ ACHAT
+
+⭐⭐⭐ SURVEILLER
+
+⭐⭐ ATTENDRE
+
+⭐ VENDRE
+
+Explique cette décision avec un raisonnement logique.
+
+N'hésite jamais à contredire le consensus si les données le justifient.
+
+Si une information est inconnue, indique-le explicitement.
+
+Privilégie toujours la qualité de l'analyse plutôt que la quantité.
+
+L'objectif est d'aider un investisseur long terme à prendre une décision rationnelle et fondée sur des faits, et non de confirmer une opinion préexistante.
+19. AUTO-CRITIQUE DE L'ANALYSE
+
+Avant de terminer, relis toute ton analyse et réponds aux questions suivantes :
+
+- Quels sont les 3 points les plus incertains de cette analyse ?
+- Quelles informations importantes n'ont pas pu être vérifiées ?
+- Quels biais cognitifs pourraient fausser cette analyse (biais de confirmation, extrapolation, enthousiasme excessif, etc.) ?
+- Si tu devais défendre la position inverse devant un comité d'investissement, quels seraient tes meilleurs arguments ?
+- Quelles nouvelles informations pourraient te faire changer d'avis immédiatement ?
+
+Termine par un indice de confiance global sur la recommandation :
+
+★★★★★ Très forte confiance
+★★★★☆ Forte confiance
+★★★☆☆ Confiance moyenne
+★★☆☆☆ Faible confiance
+★☆☆☆☆ Très faible confiance`;
 
 document.getElementById('copyBtn').addEventListener('click', function() {
   const textArea = document.getElementById('temp-text');
